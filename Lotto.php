@@ -23,6 +23,7 @@ Class Lotto{
 	private function curl($postData){
 		$postData['time'] = time();
 		$postData['token'] = $this->_token;
+		$postData['clientIP'] = $_SERVER['REMOTE_ADDR'];
 		$postDataJSON = json_encode($postData);
 		$postDataJSONArr['request'] = $postDataJSON;
 		$ch = curl_init($this->_APIAddress);
@@ -42,6 +43,7 @@ Class Lotto{
 		$data['secret'] = $this->_clientSecret;
 		$data['constructTime'] = $this->_time;
 		$data['type'] = "authenticate";
+		$data['clientIP'] = $_SERVER['REMOTE_ADDR'];
 		$response = $this->curl($data);
 		if(isset($response['status']) && $response['status'] == 1){
 			$this->_connected = true;
