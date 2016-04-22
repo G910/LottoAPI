@@ -2,7 +2,7 @@
 
 Class Lotto{
 	
-	private $_APIAddress = "http://mrgod.pl/lotto/API.php";
+	private $_APIAddress = "http://89.40.116.8/lotto/API.php";
 	private $_clientID = null;
 	private $_clientSecret = null;
 	private $_connected = false;
