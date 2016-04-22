@@ -10,25 +10,29 @@ Class Lotto{
 	private $_lastErrorDesc;
 	private $_time;
 	private $_token;
+	private $_debug = false;
 	
-	public function __construct($clientID = null, $clientSecret = null){
+	public function __construct($clientID = null, $clientSecret = null, $debug = false){
 		$this->_clientID = $clientID;
 		$this->_clientSecret = $clientSecret;
 		$this->_time = time();
 		$this->connect();
+		$this->_debug = $debug;
 	}
 	
 	private function curl($postData){
 		$postData['time'] = time();
 		$postData['token'] = $this->_token;
 		$postDataJSON = json_encode($postData);
-		// echo "<br>Request:".$postDataJSON."<br>";
 		$postDataJSONArr['request'] = $postDataJSON;
 		$ch = curl_init($this->_APIAddress);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postDataJSONArr);
 		$response = curl_exec($ch);
-		// echo "Response: ".$response."<br>";
+		if($this->_debug){
+			echo "<br>Request:".$postDataJSON."<br>";
+			echo "Response: ".$response."<br>";
+		}
 		curl_close($ch);
 		return json_decode($response, true);
 	}
