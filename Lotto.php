@@ -12,7 +12,7 @@ Class Lotto{
 	private $token;
 	private $debug = false;
 	private $debugFile = "./LottoAPI.log";
-	
+
 	public function __construct($clientID = null, $clientSecret = null, $debug = false){
 		$this->clientID = $clientID;
 		$this->clientSecret = $clientSecret;
@@ -20,13 +20,13 @@ Class Lotto{
 		$this->connect();
 		$this->debug = $debug;
 	}
-	
+
 	private function appendLog($content){
 		if(!file_exists($this->debugFile))
 			file_put_contents($this->debugFile, "");
 		file_put_contents($this->debugFile, file_get_contents($this->debugFile).$content);
 	}
-	
+
 	private function curl($postData){
 		$postData['time'] = time();
 		$postData['token'] = $this->token;
@@ -49,7 +49,7 @@ Class Lotto{
 		}
 		return $response;
 	}
-	
+
 	private function isDateValid($date){
 		$isCorrectData = preg_match("|[0-9]{4}-[0-9]{2}-[0-9]{2}|", $date);
 		if ($date !== null && !$isCorrectData) {
@@ -60,116 +60,57 @@ Class Lotto{
 		return $date;
 	}
 	
+	private function createRequest($date, $from){
+		if(($date = $this->isDateValid($date)) === false) {
+			return false;
+		}
+		$data = [];
+		$data['type'] = 'get'.$from;
+		if ($date !== null) {
+			$data['type'] .= 'ByDate';
+			$data['date'] = $date;
+		}
+		return $data;
+	}
+
 	public function connect(){
-		$data['id'] = $this->clientID;
-		$data['secret'] = $this->clientSecret;
-		$data['constructTime'] = $this->time;
-		$data['type'] = "authenticate";
-		$data['clientIP'] = $_SERVER['REMOTE_ADDR'];
+		$data = ['id' => $this->clientID, 'secret' => $this->clientSecret, 'constructTime' => $this->time, 'type' => "authenticate", 'clientIP' => $_SERVER['REMOTE_ADDR']];
 		$response = $this->curl($data);
 	 	$this->connected = true;
 		$this->token = $response['token'];
 		return true;
 	}
-	
+
 	public function getLastError(){
-		$error = (!empty($this->lastErrorCode)) ? "[#ERR ".$this->lastErrorCode."]: ".$this->lastErrorDesc: false;
-		return $error;
+		return (!empty($this->lastErrorCode)) ? "[#ERR ".$this->lastErrorCode."]: ".$this->lastErrorDesc: false;
 	}
-	
+
 	public function getLotto($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getLotto';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "Lotto"));
 	}
-	
+
 	public function getLottoPlus($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getLottoPlus';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "LottoPlus"));
 	}
-	
+
 	public function getMiniLotto($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getMiniLotto';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "MiniLotoo"));
 	}
-	
+
 	public function getMultiMulti($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getMultiMulti';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "MultiMulti"));
 	}
-	
+
 	public function getKaskada($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getKaskada';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "Kaskada"));
 	}
-	
+
 	public function getEkstraPensja($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getEkstraPensja';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "EkstraPensja"));
 	}
-	
+
 	public function getKenyo($date = null){
-		if(($date = $this->isDateValid($date)) === false) {
-			return false;
-		}
-		$data = [];
-		$data['type'] = 'getKenyo';
-		if ($date !== null) {
-			$data['type'] .= 'ByDate';
-			$data['date'] = $date;
-		}
-		return $this->curl($data);
+		return $this->curl($this->createRequest($date, "Kenyo"));
 	}
-	
-	
-	
-	
 	
 }

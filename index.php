@@ -1,5 +1,4 @@
 <?php
-
 require("./Lotto.php");                         // Załadowanie pliku z klasą Lotto API
 
 $lotto = new Lotto("1", "zxc");                 // Połączenie podając ID klienta i Client Secret

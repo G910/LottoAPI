@@ -1,0 +1,45 @@
+Request:{"type":"getLotto","time":1461415695,"token":"f8f16461e1401fdf024d50b3a028d75eb720689a","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5777","date":"2016-04-21","day":"czwartek","numbers":["5","11","32","34","41","44"]}}
+
+Request:{"type":"getLottoByDate","date":"2014-03-13","time":1461415695,"token":"f8f16461e1401fdf024d50b3a028d75eb720689a","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5447","date":"2013-03-14","day":"czwartek","numbers":["4","7","16","33","35","40"]}}
+
+Request:{"time":1461415695,"token":"f8f16461e1401fdf024d50b3a028d75eb720689a","clientIP":"127.0.0.1"}
+Response: {"status":-1,"author":"Beniamin Kowol(MrGOD.PL)","description":"API do gier losowych Totalizatora Sportowego. Lotto, Lotto Plus, Ekstra Pensja, Multi Multi, Mini Lotto, Kaskada, Kenyo."}
+
+Request:{"time":1461415696,"token":"f8f16461e1401fdf024d50b3a028d75eb720689a","clientIP":"127.0.0.1"}
+Response: {"status":-1,"author":"Beniamin Kowol(MrGOD.PL)","description":"API do gier losowych Totalizatora Sportowego. Lotto, Lotto Plus, Ekstra Pensja, Multi Multi, Mini Lotto, Kaskada, Kenyo."}
+
+Request:{"type":"getEkstraPensja","time":1461415696,"token":"f8f16461e1401fdf024d50b3a028d75eb720689a","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":null,"date":"1970-01-01","day":null,"numbers":["2","11","18","21","27"],"plus":"2"}}
+
+Request:{"type":"getLotto","time":1461415729,"token":"5f572c24f69c85796b7c7ebbc38e68c2ae2e694d","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5777","date":"2016-04-21","day":"czwartek","numbers":["5","11","32","34","41","44"]}}
+
+Request:{"type":"getLottoByDate","date":"2014-03-13","time":1461415734,"token":"5f572c24f69c85796b7c7ebbc38e68c2ae2e694d","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5447","date":"2013-03-14","day":"czwartek","numbers":["4","7","16","33","35","40"]}}
+
+Request:{"type":"getLottoPlus","time":1461415734,"token":"5f572c24f69c85796b7c7ebbc38e68c2ae2e694d","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5777","date":"2016-04-21","day":"czwartek","numbers":["1","2","8","26","31","38"]}}
+
+Request:{"type":"getLottoPlusByDate","date":"2014-03-13","time":1461415735,"token":"5f572c24f69c85796b7c7ebbc38e68c2ae2e694d","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5447","date":"2013-03-14","day":"czwartek","numbers":["9","12","24","37","44","48"]}}
+
+Request:{"type":"getEkstraPensja","time":1461415735,"token":"5f572c24f69c85796b7c7ebbc38e68c2ae2e694d","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":null,"date":"1970-01-01","day":null,"numbers":["2","11","18","21","27"],"plus":"2"}}
+
+Request:{"type":"getLotto","time":1461416050,"token":"a4ea7b8724e74aaea1da514c145b1b5a2d3f4169","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5777","date":"2016-04-21","day":"czwartek","numbers":["5","11","32","34","41","44"]}}
+
+Request:{"type":"getLottoByDate","date":"2014-03-13","time":1461416050,"token":"a4ea7b8724e74aaea1da514c145b1b5a2d3f4169","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5447","date":"2013-03-14","day":"czwartek","numbers":["4","7","16","33","35","40"]}}
+
+Request:{"type":"getLottoPlus","time":1461416051,"token":"a4ea7b8724e74aaea1da514c145b1b5a2d3f4169","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5777","date":"2016-04-21","day":"czwartek","numbers":["1","2","8","26","31","38"]}}
+
+Request:{"type":"getLottoPlusByDate","date":"2014-03-13","time":1461416051,"token":"a4ea7b8724e74aaea1da514c145b1b5a2d3f4169","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":"5447","date":"2013-03-14","day":"czwartek","numbers":["9","12","24","37","44","48"]}}
+
+Request:{"type":"getEkstraPensja","time":1461416051,"token":"a4ea7b8724e74aaea1da514c145b1b5a2d3f4169","clientIP":"127.0.0.1"}
+Response: {"status":1,"lottery":{"number":null,"date":"1970-01-01","day":null,"numbers":["2","11","18","21","27"],"plus":"2"}}
+
