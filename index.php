@@ -16,6 +16,12 @@ var_dump($lotto->getLottoPlus("2014-03-13"));   // Wyświetli wyniki losowania L
 
 var_dump($lotto->getEkstraPensja());            // Wyświetli wyniki z ostatniego losowania Ekstra Pensja
 
+var_dump($lotto->getKaskada());                 // Wyświetli wyniki z ostatniego losowania Kaskada
+
+var_dump($lotto->getMiniLotto());               // Wyświetli wyniki z ostatniego losowania Mini Lotto
+
+var_dump($lotto->getKeno());                   // Wyświetli wyniki z ostatniego losowania Keno
+
 var_dump($lotto->getLastError());
 
 

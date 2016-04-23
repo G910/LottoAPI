@@ -45,7 +45,7 @@ Class Lotto{
 		if(empty($response['status']) || $response['status'] != 1) {
 			$this->lastErrorCode = $response['error']['code'];
 			$this->lastErrorDesc = $response['error']['description'];
-			return false;
+			return [];
 		}
 		return $response;
 	}
@@ -62,7 +62,7 @@ Class Lotto{
 	
 	private function createRequest($date, $from){
 		if(($date = $this->isDateValid($date)) === false) {
-			return false;
+			return [];
 		}
 		$data = [];
 		$data['type'] = 'get'.$from;
@@ -70,7 +70,7 @@ Class Lotto{
 			$data['type'] .= 'ByDate';
 			$data['date'] = $date;
 		}
-		return $data;
+		return $this->curl($data);
 	}
 
 	public function connect(){
@@ -82,35 +82,35 @@ Class Lotto{
 	}
 
 	public function getLastError(){
-		return (!empty($this->lastErrorCode)) ? "[#ERR ".$this->lastErrorCode."]: ".$this->lastErrorDesc: false;
+		return (!empty($this->lastErrorCode)) ? "[#ERR ".$this->lastErrorCode."]: ".$this->lastErrorDesc: "";
 	}
 
 	public function getLotto($date = null){
-		return $this->curl($this->createRequest($date, "Lotto"));
+		return $this->createRequest($date, "Lotto");
 	}
 
 	public function getLottoPlus($date = null){
-		return $this->curl($this->createRequest($date, "LottoPlus"));
+		return $this->createRequest($date, "LottoPlus");
 	}
 
 	public function getMiniLotto($date = null){
-		return $this->curl($this->createRequest($date, "MiniLotoo"));
+		return $this->createRequest($date, "MiniLotto");
 	}
 
 	public function getMultiMulti($date = null){
-		return $this->curl($this->createRequest($date, "MultiMulti"));
+		return $this->createRequest($date, "MultiMulti");
 	}
 
 	public function getKaskada($date = null){
-		return $this->curl($this->createRequest($date, "Kaskada"));
+		return $this->createRequest($date, "Kaskada");
 	}
 
 	public function getEkstraPensja($date = null){
-		return $this->curl($this->createRequest($date, "EkstraPensja"));
+		return $this->createRequest($date, "EkstraPensja");
 	}
 
-	public function getKenyo($date = null){
-		return $this->curl($this->createRequest($date, "Kenyo"));
+	public function getKeno($date = null){
+		return $this->createRequest($date, "Keno");
 	}
 	
 }
