@@ -6,8 +6,7 @@ Class Lotto{
 	private $clientID = null;
 	private $clientSecret = null;
 	private $connected = false;
-	private $lastErrorCode;
-	private $lastErrorDesc;
+	private $lastError = [];
 	private $time;
 	private $token;
 	private $debug = false;
@@ -37,14 +36,12 @@ Class Lotto{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $postDataJSONArr);
 		$response = curl_exec($ch);
-		if($this->debug){
+		if($this->debug)
 			$this->appendLog("Request:".$postDataJSON."\r\nResponse: ".$response."\r\n\r\n");
-		}
 		curl_close($ch);
 		$response = json_decode($response, true);
 		if(empty($response['status']) || $response['status'] != 1) {
-			$this->lastErrorCode = $response['error']['code'];
-			$this->lastErrorDesc = $response['error']['description'];
+			$this->lastError = ['code' => $response['error']['code'], 'desc' => $response['error']['description']];
 			return [];
 		}
 		return $response;
@@ -53,8 +50,7 @@ Class Lotto{
 	private function isDateValid($date){
 		$isCorrectData = preg_match("|[0-9]{4}-[0-9]{2}-[0-9]{2}|", $date);
 		if ($date !== null && !$isCorrectData) {
-			$this->lastErrorCode = "clientSide1";
-			$this->lastErrorDesc = "Data wprowadzona w niewłaściwym formacie. Prawidłowy: YYYY-MM-DD";
+			$this->lastError = ['code' => "clientSide1", 'desc' => "Data wprowadzona w niewłaściwym formacie. Prawidłowy: YYYY-MM-DD"];
 			return false;
 		}
 		return $date;
@@ -82,7 +78,7 @@ Class Lotto{
 	}
 
 	public function getLastError(){
-		return (!empty($this->lastErrorCode)) ? "[#ERR ".$this->lastErrorCode."]: ".$this->lastErrorDesc: "";
+		return (!empty($this->lastError['code'])) ? "[#ERR ".$this->lastError['code']."]: ".$this->lastError['desc']: "";
 	}
 
 	public function getLotto($date = null){

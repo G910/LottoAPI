@@ -20,7 +20,9 @@ var_dump($lotto->getKaskada());                 // Wyświetli wyniki z ostatnieg
 
 var_dump($lotto->getMiniLotto());               // Wyświetli wyniki z ostatniego losowania Mini Lotto
 
-var_dump($lotto->getKeno());                   // Wyświetli wyniki z ostatniego losowania Keno
+var_dump($lotto->getKeno());                    // Wyświetli wyniki z ostatniego losowania Keno
+
+var_dump($lotto->getMultiMulti());              // Wyświetli wyniki z ostatniego losowania MultiMulti
 
 var_dump($lotto->getLastError());
 
